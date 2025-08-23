@@ -7,10 +7,16 @@ MySQL과 Eclipse를 연동해보겠습니다.
 2. 매개변수로 받은 db가 비어있으면 "jdbc:mysql://localhost/"(사용중인 컴퓨터의 Mysql주소)을 받는 String 변수(url)를 하나 받고 db가 존재한다면 "jdbc:mysql://localhost/"+db를 받는 String 변수(url)를 설정해줍니다.
 사용중인 Mysql의 아이디(id)와 비밀번호(pass)를 받는 변수들을 지정하고 데이터베이스의 연결을 나타내는 Connection객체를 선언하고 아직 선언되지 않았다는 의미인 Connection con = null을 작성해줍니다.
 
+![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day1-2.png)
+
 3. JDBC를 이용하여 데이터베이스와 연결하기 위해서 JDBC드라이버 클래스를 로드해야 하기 때문에 Class.for.name() 함수를 이용해야 합니다. Class.forName("com.mysql.cj.jdbc.Driver")를 선언해줍니다. 여기서 ()안에 있는 경로는 Mysql JDBC 드라이버 클래스의 전체 경로를 나타냅니다.
 Driver.getConnection(url, id,pass) 함수를 이용하여 주어진 url, id, pass를 이용하여 데이터베이스와 연결을 합니다.
 여기서 Driver.getConnection(url, id,pass) 함수와  Class.forName("com.mysql.cj.jdbc.Driver") 함수는 try-catch구문을 사용해야 하는데 만일 연결해야할 데이터베이스가 존재하지 않으면 ClassNotFoundException e, sql구문이 오류가 나면 SQLException e이라는 catch를 사용해야 합니다.
 
+![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day1-3.png)
+
 4. 실행을 시키면 아래와 같은 실행결과가 나옵니다!!
+
+ ![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day1-4.png)
 
  
