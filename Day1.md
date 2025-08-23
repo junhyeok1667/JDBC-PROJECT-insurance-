@@ -24,4 +24,44 @@ Driver.getConnection(url, id,pass) 함수를 이용하여 주어진 url, id, pas
 
 
 
- <script src="https://gist.github.com/junhyeok1667/e5091509b35ceeff442bb2d2d0d7e06f.js"></script>
+```java
+package customer_db;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class Driver_connect {
+	
+	public static Connection makeConnection(String db) {
+		String url;
+		if(db.equals("")) {
+			url = "jdbc:mysql://localhost/";
+		}else {
+			url = "jdbc:mysql://localhost/"+db;
+		}
+		
+		String id = "root";
+		String pass = "1234";
+		Connection con = null;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("드라이브 적재성공");
+			System.out.println("데이터베이스 연결성공");
+			con = DriverManager.getConnection(url,id,pass);
+		} catch (ClassNotFoundException e) {
+			System.out.println("연결실패.");
+		} catch (SQLException e) {
+			System.out.println("sql오류");
+		}
+		
+		return con;
+		
+	}
+	public static void main(String[] args) {
+		Connection con = makeConnection("");
+
+	}
+
+}
