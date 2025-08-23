@@ -1,7 +1,7 @@
 MySQL과 Eclipse를 연동해보겠습니다.
 
 1.자신이 접속하고 싶은 데이터베이스의 이름을 매개변수로 갖고 매개변수를 이용하여 Mysql과 Eclipse를 연동시키는 makeConnection 함수를 생성합니다. 여기서 java.sql.Connection 인터페이스를 이용하여 데이베이스와의 연결을 나타내는 객체를 반환한다는 의미를 가지도록 Connection이라는 반환유형을 가지게 합니다.
-
+![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.png?raw=true)
 2. 매개변수로 받은 db가 비어있으면 "jdbc:mysql://localhost/"(사용중인 컴퓨터의 Mysql주소)을 받는 String 변수(url)를 하나 받고 db가 존재한다면 "jdbc:mysql://localhost/"+db를 받는 String 변수(url)를 설정해줍니다.
 사용중인 Mysql의 아이디(id)와 비밀번호(pass)를 받는 변수들을 지정하고 데이터베이스의 연결을 나타내는 Connection객체를 선언하고 아직 선언되지 않았다는 의미인 Connection con = null을 작성해줍니다.
 
