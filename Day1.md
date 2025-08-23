@@ -21,4 +21,7 @@ Driver.getConnection(url, id,pass) 함수를 이용하여 주어진 url, id, pas
 
   ![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day1-4.png)
 
- 
+
+
+
+ <script src="https://gist.github.com/junhyeok1667/e5091509b35ceeff442bb2d2d0d7e06f.js"></script>
