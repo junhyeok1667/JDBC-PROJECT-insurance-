@@ -33,4 +33,171 @@ mathAdd() 함수는 Mysql의 customer 테이블에 접속을 하고 직접 작�
 ![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day7/img_5.png)
 이제 Day1부터 현재까지 작성한 전체코드를 실행시켜보겠습니다.<br>
 
+[![영상 보기](Day7.png)](https://tv.kakao.com/v/445015295)<br>
+
+```java
+package customer_ui;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Calendar;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import customer_db.Driver_connect;
+
+//고객등록 버튼을 눌렀을때 나오는 Gui
+public class Customer_Sign_Up extends JFrame{
+	JTextField [] jt;
+	
+	public Customer_Sign_Up(){
+		setTitle("고객 등록");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Container c = getContentPane();;
+		
+		c.add(new Panel1(), BorderLayout.CENTER);
+		c.add(new Panel2(), BorderLayout.SOUTH);
+		
+		setSize(500, 500);
+		setVisible(true);
+	}
+	
+	class Panel1 extends JPanel{
+		public Panel1() {
+			setLayout(new GridLayout(6,2));
+			String [] name = {"고객 코드:", "*고객 명:", "*생년월일(YYYY_MM_DD):", "*연락처:", "주소:", "회사:"};
+			jt = new JTextField[name.length];
+			JLabel [] la = new JLabel[name.length];
+			
+			for(int i = 0 ; i< jt.length; i++) {
+				la[i] = new JLabel(name[i]);
+				jt[i] = new JTextField(15);
+				add(la[i]); add(jt[i]);
+			}
+			//고객코드는 비활성화
+			jt[0].setEnabled(false);
+			
+			//생년월일을 입력하고 Enter를 누르면 자동으로 고객코드가 생성되는 ActionListener
+			jt[2].addKeyListener(new Action1());
+		}
+	}
+	
+	class Panel2 extends JPanel{
+		public Panel2() {
+			String s[] = {"추가","닫기"};
+			JButton [] jb = new JButton[s.length];
+			
+			for(int i = 0; i<jb.length; i++) {
+				jb[i] = new JButton(s[i]);
+				add(jb[i]);	
+				
+				//추가 또는 닫기 버튼을 눌렀을때 입력 한 정보를 기반으로 고객이 추가되는 ActionListener
+				jb[i].addActionListener(new Action2());
+			}
+		}
+	}
+	
+	class Action2 implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			JButton btn = (JButton)e.getSource();
+			if(btn.getText().equals("추가")) {
+				if((jt[1].getText().equals("")|| jt[2].getText().equals("")||jt[3].getText().equals(""))) {
+					JOptionPane.showMessageDialog(null, "필수항목(*)를 모두 입력해주세요","고객 등록 에러",JOptionPane.ERROR_MESSAGE);
+					
+				}else {
+					//필수항목이 채워졌을 때 Mysql에 정보를 추가하는 메소드
+					mathAdd();
+				}
+			}
+			//닫기버튼을 누르면 화면 종료
+			else {
+				dispose();
+			}
+		}
+	
+		public void mathAdd() {
+			boolean exist = false;
+			Connection con = Driver_connect.makeConnection("customer");
+			String sawoninsert = "insert into customer values (?, ?, ?, ?, ?, ?) ";
+			PreparedStatement psmt = null;
+			PreparedStatement psmt1 = null;
+			String [] s = new String[jt.length];
+			
+			try {
+				psmt = con.prepareStatement(sawoninsert);
+				for(int i = 0; i<jt.length;i++) {
+					s[i] = jt[i].getText();		
+				}
+				for(int k = 0; k<s.length;k++) {
+					psmt.setString(k+1, s[k]);
+				}
+				//존재하는 고객일 경우 다른 이름으로 저장하도록 JoptionPane 생성(108~116)
+				String checkName = "select * from customer where name like '"+s[1]+"'";
+				psmt1 = con.prepareStatement(checkName);
+				ResultSet rs = psmt1.executeQuery();
+				
+				if (rs.next()) {
+	                exist = true;
+	                JOptionPane.showMessageDialog(null, "존재하는 이름의 고객입니다. 다른이름을 입력해주세요.");
+	                return;
+	            }
+				
+				psmt.executeUpdate();
+				JOptionPane.showMessageDialog(null, "고객추가가 완료되었습니다");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	class Action1 extends KeyAdapter{
+		@Override
+		public void keyPressed(KeyEvent e) {
+			int keycode = e.getKeyCode();
+			
+			switch(keycode) {
+			//Enter키를 눌렀을 때 고객코드==> S + (현재년도-2000) + 생년월일 합계 
+			case KeyEvent.VK_ENTER:
+				Calendar cal = Calendar.getInstance();
+				int year = cal.get(Calendar.YEAR)-2000;
+				String str[] = jt[2].getText().split("-");
+				if(str.length!=3) {
+					JOptionPane.showMessageDialog(null, "날짜 형식이 올바르지 않습니다. 다시 입력해주세요.", "오류", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				int hap = Integer.valueOf(str[0])+Integer.valueOf(str[1])+Integer.valueOf(str[2]);
+				jt[0].setEnabled(true);
+				jt[0].setText("S"+year+hap);
+				jt[0].setEnabled(false);
+			}
+			
+			super.keyPressed(e);
+		}
+	}
+	
+
+
+	public static void main(String[] args) {
+		new Customer_Sign_Up();
+
+	}
+
+}
 
