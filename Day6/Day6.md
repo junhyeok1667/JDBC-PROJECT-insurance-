@@ -21,5 +21,83 @@ Top Panel에 대한 코드입니다.<br>
 ![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day6/img_5.png)
 이제 다시 Login코드를 실행하겠습니다!<br>
 
+[![영상 보기](Day6.png)](https://tv.kakao.com/v/444929967)<br>
+아래는 Day6에서 만든 화면에 대한 코드입니다!<br>
+
+```java
+package customer_ui;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+//로그인이 성공했을때 나타나는 Gui
+public class Login_success extends JFrame{
+	public Login_success() {
+		setTitle("보험계약 관리화면");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Container c = getContentPane();
+	
+		c.add(new Top(),BorderLayout.NORTH);
+		c.add(new Bottom(),BorderLayout.CENTER);
+		
+		setSize(500, 500);
+		setVisible(true);
+		
+	}
+	//로그인이 성공했을때 나타나는 버튼
+	class Top extends JPanel{
+		public Top() {
+			String [] text = {"고객등록", "고객조회", "계약관리", "종료"};
+			JButton [] btn = new JButton[text.length];
+			
+			for(int i = 0; i<text.length; i++) {
+				btn[i] = new JButton(text[i]);
+				add(btn[i]);
+			}
+		}
+	}
+	//이미지 삽입
+	class Bottom extends JPanel{
+		public Bottom() {
+			ImageIcon image = new ImageIcon("img.jpg");
+			JLabel imageLabel = new JLabel(image);
+			this.add(imageLabel);
+		}
+	}
+	
+	class Action implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton b = (JButton)e.getSource();
+			if(b.getText().equals("고객등록")) {
+				customer_ui.Customer_Sign_Up c = new Customer_Sign_Up();
+				
+			}else if(b.getText().equals("고객조회")) {
+				customer_ui.Customer_Inquiry i = new Customer_Inquiry();
+			}else if(b.getText().equals("계약관리")) {
+				customer_ui.Contract_Management c = new Contract_Management();
+			}
+
+		}
+	}
+	
+	public static void main(String[] args) {
+	      new Login_success();
+
+	}
+
+	
+
+
+}
+
 
  
