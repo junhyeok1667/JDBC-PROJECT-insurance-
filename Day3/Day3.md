@@ -4,4 +4,4 @@
 이번에는 관리자 테이블 안에 데이터를 넣는 작업을 해보겠습니다!<br>
 
 우선 customer데이터베이스를 선택해야 하기에 customer데이터베이스로 이동해줍니다.<br>
-
+![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day3/img.png)
