@@ -34,6 +34,7 @@ int selection = jt.getSelectedRow(); 이라는 함수를 이용해 마우스를 
 저는 생성되는 클래서의 이름을 Customer_modify로 하였습니다. 또한 생성되는 Gui를 보시면 Day7에서 생성한 Gui와 같기때문에 Gui틀에 대해서는 설명을 생략하겠습니다. 혹시 Gui틀에 대해 다시 보고 싶다! 하시면 아래에 링크를 첨부하겠습니다.<br>
 [블로그 바로가기](https://chilisugar-project.tistory.com/8)
 <br>
+<br>
 조금 다른점이 있다면 고객코드와 고객명이 전부 비활성화 되야합니다.<br>
 아래와 같이 매개변수를 통해 받은 Vector의 정보를 통해 JTextField를 채우고 고객코드와 고객명이 비활성화되는 코드입니다.<br>
 ![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day9/img_7.png)
