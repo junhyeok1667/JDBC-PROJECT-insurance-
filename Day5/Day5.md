@@ -15,6 +15,7 @@ Day4에서 만들었던 Gui의 틀에 이어서 Jbutton들에 ActionListener를 
 Action클래스는 Jbutton인 "확인","종료" 버튼을 눌렀을때 Mysql의 "admin" 관리자테이블로 접속해 name과 passwd의 정보와 자신이 입력한 이름과 비밀번호를 비교해 존재하면 로그인이 되는 클래스입니다. 또한 로그인을 성공했을때 Joptionpane, 실패했을때 Joptionpane을 만들어줍니다. <br>
 ![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day5/img_3.png)
 
-실행했을때 Mysql의 admin 테이블에 존재하는 이름과 일치하는 비밀번호이면 로그인이 되는것을 볼수 있습니다.
+실행했을때 Mysql의 admin 테이블에 존재하는 이름과 일치하는 비밀번호이면 로그인이 되는것을 볼수 있습니다.<br>
+[![영상 보기](Day5.png)](https://tv.kakao.com/v/444763878)
 
 
