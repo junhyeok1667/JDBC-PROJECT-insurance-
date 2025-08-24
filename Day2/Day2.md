@@ -28,7 +28,7 @@ excute()는 주로 SELECT와 같이 결과를 반환하는 Sql문을 실행할�
 
 ![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day2/img_6.png)
 
-'''java
+```java
 package customer_db;
 
 import java.sql.Connection;
