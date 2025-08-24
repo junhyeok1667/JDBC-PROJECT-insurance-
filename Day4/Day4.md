@@ -30,7 +30,7 @@ Center panel에는 "이름", "비밀번호"에 대한 JLabel이 필요하고 각
 
 마지막으로 세번째 사진(Bottom panel)에 대해 만들어보겠습니다.
 Bottom panel에는 "확인", "종료" 에 대한 JButton이 2개 존재합니다.<br>
-따라서 JButton을 추가하는 코드만 추가하겠습니다/
+따라서 JButton을 추가하는 코드만 추가하겠습니다
 ![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day4/img_6.png)
 
 이제 마지막으로 Top panel, Center panel, Bottom panel을 Container에 올리는 코드를 작성하겠습니다. panel에 대해서는 BorderLayout을 이용하여 North, Center, South 방향에 배치하도록 하겠습니다.<br>
