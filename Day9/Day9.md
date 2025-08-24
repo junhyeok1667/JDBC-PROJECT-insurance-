@@ -48,6 +48,8 @@ int selection = jt.getSelectedRow(); 이라는 함수를 이용해 마우스를 
 이제 Mysql에 수정하는 코드를 짜보도록 하겠습니다.<br>
 Sql문을 실해시키기 위한 PreparedStatement 객체를 생성하겠습니다. <br>
 Mysql에서 수정을 하는 Sql구문을 작성해보도록 하겠습니다.<br>
+<br>
+
 ![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day9/img_9.png)
 <br>
 이 Sql구문은 "customer"테이블에서 code와 name이 일치하는 정보의 birth, tel, address, company를 업데이트 하는 구문입니다. 이후 PreparedStatement객체를 이용하여 Sql구문을 실행시켜주겠습니다.<br>
@@ -68,10 +70,12 @@ Mysql에서 수정을 하는 Sql구문을 작성해보도록 하겠습니다.<br
 Vector의 0번째 index의 정보를 customer테이블의 code와 비교하여 일치하면 삭제하는 Sql문입니다.<br>
 이후 Sql문을 실행시키기 위한 PreparedStatement객체를 생성해주고 Sql문을 생성합니다. 이후 psmt.executeUpdate(); 코드를 사용해 Sql문을 실행시키고 jt.updateUI(); 코드를 사용하여 JTable을 업데이트 합니다.<br>
 드디어 마지막! "닫기" 버튼에 대한 코드를 작성하겠습니다.<br>
-정말 간단합니다. dispose()함수를 이용하면 화면을 지웁니다.<br>
+정말 간단합니다. dispose()함수를 이용하면 화면을 지웁니다.
+
 ![실행 결과](https://github.com/junhyeok1667/JDBC-PROJECT-insurance-/blob/main/Day9/img_13.png)
 <br>
-이렇게 전부 완성했습니다. 결과에 대한 동영상을 한번 보시겠습니다!!<br>
+이렇게 전부 완성했습니다. 결과에 대한 동영상을 한번 보시겠습니다!!
+
 [![영상 보기](Day9.png)](https://tv.kakao.com/v/445323573)<br>
 
 아래는 전체 코드입니다 <br>
